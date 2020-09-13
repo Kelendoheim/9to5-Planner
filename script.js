@@ -1,7 +1,6 @@
 var currentDayText = moment().format("MMMM Do YYYY");
 var currentHour = moment().hour();
 var containerEl = $(".container");
-
 var plannerHourId = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 var workHours = [
   "9:00 AM",
@@ -14,7 +13,9 @@ var workHours = [
   "4:00 PM",
   "5:00 PM",
 ];
+
 $("#currentDay").text(currentDayText);
+
 for (i = 0; i < workHours.length; i++) {
   var rowEl = $("<row>");
   var hourDisplay = $("<div>");
@@ -28,6 +29,7 @@ for (i = 0; i < workHours.length; i++) {
   rowEl.attr("id", plannerHourId[i]);
   hourDisplay.text(workHours[i]);
   buttons.text("Save");
+  text.text(localStorage.getItem(plannerHourId[i]));
 
   if (plannerHourId[i] > currentHour) {
     text.attr("class", "future description col-sm-8");
@@ -42,8 +44,6 @@ for (i = 0; i < workHours.length; i++) {
   rowEl.append(buttons);
   containerEl.append(rowEl);
 }
-
-function populateText() {}
 
 $(document).on("click", ".saveBtn", function (event) {
   console.log($(event.target).parent().attr("id"));
