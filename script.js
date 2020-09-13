@@ -24,6 +24,9 @@ for(i = 0; i < timeDisplay.length; i++){
     hourDisplay.attr("class", "hour col-md-2");
     text.attr("class", "description col-md-8");
     buttons.attr("class", "saveBtn col-md-2");
+    hourDisplay.text(timeDisplay[i]._i);
+    console.log(timeDisplay[i]._i);
+    buttons.text("Save");
 
     rowEl.append(hourDisplay);
     rowEl.append(text);
