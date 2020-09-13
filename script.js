@@ -20,10 +20,16 @@ for(i = 0; i < timeDisplay.length; i++){
     var hourDisplay = $("<div>");
     var text = $("<textarea>");
     var buttons = $("<button>");
+    rowEl.attr("class", "time-block row");
+    hourDisplay.attr("class", "hour col-md-2");
+    text.attr("class", "description col-md-8");
+    buttons.attr("class", "saveBtn col-md-2");
+
     rowEl.append(hourDisplay);
     rowEl.append(text);
     rowEl.append(buttons);
     containerEl.append(rowEl);
+
     
 
 };
