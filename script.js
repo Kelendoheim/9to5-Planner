@@ -1,32 +1,44 @@
 var currentDayText = moment().format("MMMM Do YYYY");
-var currentHour = "";
+var currentHour = moment().hour();
 var containerEl = $(".container");
 
-$("#currentDay").text(currentDayText);
 
-var timeDisplay = [
-  moment("9:00 AM", "h A"),
-  moment("10:00 AM", "h A"),
-  moment("11:00 AM", "h A"),
-  moment("12:00 PM", "h A"),
-  moment("1:00 PM", "h A"),
-  moment("2:00 PM", "h A"),
-  moment("3:00 PM", "h A"),
-  moment("4:00 PM", "h A"),
-  moment("5:00 PM", "h A"),
+var plannerHourId = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+var workHours = [
+  "9:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "1:00 PM",
+  "2:00 PM",
+  "3:00 PM",
+  "4:00 PM",
+  "5:00 PM"
 ];
-for(i = 0; i < timeDisplay.length; i++){
+$("#currentDay").text(currentDayText);
+for(i = 0; i < workHours.length; i++){
     var rowEl = $("<row>");
     var hourDisplay = $("<div>");
     var text = $("<textarea>");
     var buttons = $("<button>");
+
     rowEl.attr("class", "time-block row");
-    hourDisplay.attr("class", "hour col-md-2");
-    text.attr("class", "description col-md-8");
-    buttons.attr("class", "saveBtn col-md-2");
-    hourDisplay.text(timeDisplay[i]._i);
-    console.log(timeDisplay[i]._i);
+    hourDisplay.attr("class", "hour col-sm-2");
+    text.attr("class", "description col-sm-8");
+    buttons.attr("class", "saveBtn col-sm-2");
+    rowEl.attr("id", plannerHourId[i])
+    hourDisplay.text(workHours[i]);
     buttons.text("Save");
+
+    if (plannerHourId[i] > currentHour){
+        text.attr("class", "future description col-sm-8");
+    } else if (plannerHourId[i] < currentHour){
+        text.attr("class", "past description col-sm-8");
+    } else {
+        text.attr("class", "present description col-sm-8")
+    }
+    console.log(plannerHourId[i]);
+    console.log(currentHour);
 
     rowEl.append(hourDisplay);
     rowEl.append(text);
